@@ -1,4 +1,3 @@
-
 from rapidfuzz import fuzz
 import streamlit as st
 
@@ -6,14 +5,20 @@ def fuzzy_match(comando, alvo, limiar=80):
     return fuzz.partial_ratio(comando.lower(), alvo.lower()) >= limiar
 
 def interpretar_comando(comando: str, estado: dict) -> None:
+    comando = comando.lower().strip()
+
+    if comando == "lili":
+        estado["lili_status"] = "ativa"
+        estado["modo_escuta_ativa"] = True
+        return
 
     if "teste de voz" in comando or "teste do microfone" in comando:
         st.session_state["voz_detectada"] = "✅ Microfone e reconhecimento de voz funcionando!"
         return
+
     if any(p in comando for p in ["inserir", "acrescentar", "adicionar"]):
         inserir_em_bloco_por_orgaos(estado, comando)
         return
-    comando = comando.lower().strip()
 
     if fuzzy_match(comando, "abrir frases interativas"):
         estado["pagina"] = "Frases Interativas"
@@ -52,7 +57,7 @@ def interpretar_comando(comando: str, estado: dict) -> None:
         except:
             st.toast("🔕 Escuta ativa cancelada.")
         return
-    comando = comando.lower().strip()
+
     if not comando:
         return
 
