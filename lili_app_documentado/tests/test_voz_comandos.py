@@ -1,5 +1,5 @@
 import pytest
-from LILI_App_Documentado_Completo_2.voz_inteligente import interpretar_comando
+from lili_app_documentado.voz_inteligente import interpretar_comando
 
 def test_comando_valido_com_lili():
     estado = {"lili_status": "passiva"}
