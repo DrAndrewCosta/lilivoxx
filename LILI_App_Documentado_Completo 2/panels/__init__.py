@@ -1,0 +1,13 @@
+from .painel_cabecalho_laudo import painel as painel_cabecalho_laudo
+from .assistant_painel import painel as assistant_painel
+from .preferencias_painel import painel as preferencias_painel
+from .importar_paciente import painel as importar_paciente
+from .gerar_laudo import painel as gerar_laudo
+from .importation import painel as importation
+from .voice_test import painel as voice_test
+from .ia_dashboard import painel as ia_dashboard
+from .laudos_painel import painel as laudos_painel
+from .cadastro_frases import painel as cadastro_painel
+from .dinamico import painel as dinamico
+from .inicio import painel as inicio
+from .painel_frases_interativas import painel as painel_frases_interativas
