@@ -28,5 +28,5 @@ jobs:
     - name: Executar testes
       run: |
         export PYTHONPATH="${{ github.workspace }}/lili_app_documentado"
-        pytest "lili_app_documebntado/tests"
+        pytest "lili_app_documentado/tests"
 
