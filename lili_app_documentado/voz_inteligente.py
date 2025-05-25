@@ -8,23 +8,23 @@ def fuzzy_match(comando, alvo, limiar=80):
 def interpretar_comando(comando: str, estado: dict) -> None:
     comando = comando.lower().strip()
 
-    # Ativa o modo de escuta ativa ao detectar o comando "lili"
-    if comando == "lili":
-        estado["lili_status"] = "ativa"
-        estado["modo_escuta_ativa"] = True
-        try:
-            from core.audio import tocar_som
-            tocar_som("sons/bip_on.mp3")
-        except:
-            st.toast("🔊 Escuta ativa iniciada.")
-        return
-
     if "teste de voz" in comando or "teste do microfone" in comando:
         st.session_state["voz_detectada"] = "✅ Microfone e reconhecimento de voz funcionando!"
         return
 
     if any(p in comando for p in ["inserir", "acrescentar", "adicionar"]):
         inserir_em_bloco_por_orgaos(estado, comando)
+        return
+
+    # Ativa escuta ativa ao detectar "lili"
+    if "lili" in comando:
+        estado["lili_status"] = "ativa"
+        estado["modo_escuta_ativa"] = True
+        try:
+            from core.audio import tocar_som
+            tocar_som("sons/bip_on.mp3")
+        except:
+            st.toast("🔔 Escuta ativa iniciada.")
         return
 
     if fuzzy_match(comando, "abrir frases interativas"):
@@ -90,6 +90,7 @@ def interpretar_comando(comando: str, estado: dict) -> None:
     st.toast(f"🎙️ Comando reconhecido: {comando}")
 
 def inserir_em_bloco_por_orgaos(estado, comando):
+    import re
     texto = estado.get("texto_laudo", "")
     frase = estado.get("frases_filtradas", [])
     idx = estado.get("frase_escolhida")
