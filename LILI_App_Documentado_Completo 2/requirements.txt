@@ -4,7 +4,6 @@ numpy
 python-docx
 sounddevice
 vosk
-playsound
 fpdf
 watchdog
 gpt4all
