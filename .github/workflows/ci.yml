@@ -22,11 +22,11 @@ jobs:
     - name: Instalar dependências
       run: |
         python -m pip install --upgrade pip
-        pip install -r "LILI_App_Documentado_Completo 2/requirements.txt"
+        pip install -r "lili_app_documentado/requirements.txt"
         pip install pytest streamlit rapidfuzz vosk pyttsx3 sounddevice tinydb
 
     - name: Executar testes
       run: |
-        export PYTHONPATH="${{ github.workspace }}/LILI_App_Documentado_Completo 2"
-        pytest "LILI_App_Documentado_Completo 2/tests"
+        export PYTHONPATH="${{ github.workspace }}/lili_app_documentado"
+        pytest "lili_app_documentado/tests"
 
